@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background: #f0f0f0;
+    }
+    h1 { color: #333; }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { opacity: 0.8; }
+    .rock { background: #e74c3c; color: #fff; }
+    .paper { background: #3498db; color: #fff; }
+    .scissors { background: #2ecc71; color: #fff; }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock–Paper–Scissors 🎮</h1>
+  
+  <button class="rock" onclick="play('Rock')">✊ Rock</button>
+  <button class="paper" onclick="play('Paper')">✋ Paper</button>
+  <button class="scissors" onclick="play('Scissors')">✌ Scissors</button>
+  
+  <div id="result">Make your move!</div>
+  
+  <script>
+    let playerScore = 0;
+    let computerScore = 0;
+
+    function play(playerChoice) {
+      const choices = ["Rock", "Paper", "Scissors"];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+      let result = "";
+
+      if (playerChoice === computerChoice) {
+        result = "It's a Draw!";
+      } else if (
+        (playerChoice === "Rock" && computerChoice === "Scissors") ||
+        (playerChoice === "Paper" && computerChoice === "Rock") ||
+        (playerChoice === "Scissors" && computerChoice === "Paper")
+      ) {
+        result = "✅ You Win!";
+        playerScore++;
+      } else {
+        result = "❌ Computer Wins!";
+        computerScore++;
+      }
+
+      document.getElementById("result").innerText =
+        `🧑 You: ${playerChoice}\n💻 Computer: ${computerChoice}\n📊 Result: ${result}\n\n🏆 Score: You ${playerScore} - ${computerScore} Computer`;
+    }
+  </script>
+</body>
+</html>
